@@ -5,10 +5,10 @@ import "./Dashboard.css";
 import { getDashboard } from "../services/api";
 
 function Dashboard() {
-  const [user, setUser] = useState({
+  const user = {
     nom: localStorage.getItem("userNom") || "",
     prenom: localStorage.getItem("userPrenom") || ""
-  });
+  };
 
   const [environments, setEnvironments] = useState([]);
   const [calculations, setCalculations] = useState([]);
@@ -27,15 +27,22 @@ function Dashboard() {
         const { response, data } = await getDashboard(userId);
 
         if (!response.ok) {
-          setMessage(data.error || "Impossible de charger le dashboard ❌");
+          setMessage(
+            data.error ||
+            "Impossible de charger le dashboard ❌"
+          );
           return;
         }
 
         setEnvironments(data.environments || []);
         setCalculations(data.calculations || []);
+        setMessage("");
       } catch (error) {
-        console.error(error);
-        setMessage("Impossible de contacter le serveur Flask ❌");
+        console.error("Dashboard error:", error);
+
+        setMessage(
+          "Impossible de contacter le serveur Flask ❌"
+        );
       }
     };
 
@@ -54,11 +61,15 @@ function Dashboard() {
             Bienvenue {user.prenom} {user.nom} !
           </p>
         ) : (
-          <p>Bienvenue dans votre espace personnel.</p>
+          <p>
+            Bienvenue dans votre espace personnel.
+          </p>
         )}
 
         {message && (
-          <p>{message}</p>
+          <p className="dashboard-message">
+            {message}
+          </p>
         )}
 
         <div className="dashboard-actions">
@@ -75,13 +86,31 @@ function Dashboard() {
           <h2>Mes environnements</h2>
 
           {environments.length === 0 ? (
-            <p>Aucun environnement enregistré.</p>
+            <p>
+              Aucun environnement enregistré.
+            </p>
           ) : (
             environments.map((environment) => (
-              <div key={environment.id}>
+              <div
+                key={environment.id}
+                className="environment-item"
+              >
                 <p>
-                  {environment.type} : {environment.nom} {environment.prenom}
+                  <strong>Type :</strong>{" "}
+                  {environment.type}
                 </p>
+
+                <p>
+                  <strong>Nom :</strong>{" "}
+                  {environment.nom}
+                </p>
+
+                {environment.prenom && (
+                  <p>
+                    <strong>Prénom :</strong>{" "}
+                    {environment.prenom}
+                  </p>
+                )}
               </div>
             ))
           )}
@@ -91,28 +120,38 @@ function Dashboard() {
           <h2>Mes calculs</h2>
 
           {calculations.length === 0 ? (
-            <p>Aucun calcul enregistré.</p>
+            <p>
+              Aucun calcul enregistré.
+            </p>
           ) : (
             calculations.map((calculation) => (
-              <div key={calculation.id}>
+              <div
+                key={calculation.id}
+                className="calculation-item"
+              >
                 <p>
-                  Total : {calculation.total} kg CO₂
+                  <strong>Total :</strong>{" "}
+                  {calculation.total} kg CO₂
                 </p>
 
                 <p>
-                  Électricité : {calculation.electricity} kg CO₂
+                  <strong>Électricité :</strong>{" "}
+                  {calculation.electricity} kg CO₂
                 </p>
 
                 <p>
-                  Transport : {calculation.transport} kg CO₂
+                  <strong>Transport :</strong>{" "}
+                  {calculation.transport} kg CO₂
                 </p>
 
                 <p>
-                  Gaz : {calculation.gas} kg CO₂
+                  <strong>Gaz :</strong>{" "}
+                  {calculation.gas} kg CO₂
                 </p>
 
                 <p>
-                  Eau : {calculation.water} kg CO₂
+                  <strong>Eau :</strong>{" "}
+                  {calculation.water} kg CO₂
                 </p>
               </div>
             ))
