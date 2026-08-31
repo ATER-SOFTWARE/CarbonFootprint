@@ -1,0 +1,86 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 18px 40px;
+
+  background-color: #2e7d32;
+  color: white;
+
+  box-sizing: border-box;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.left-menu,
+.right-menu,
+.dashboard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.left-menu a,
+.right-menu a,
+.dashboard a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.left-menu a:hover,
+.right-menu a:hover,
+.dashboard a:hover {
+  text-decoration: underline;
+}
+
+.dashboard a {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.right-menu button {
+  padding: 9px 15px;
+  border: 1px solid white;
+  border-radius: 7px;
+
+  background-color: transparent;
+  color: white;
+
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.right-menu button:hover {
+  background-color: white;
+  color: #2e7d32;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .left-menu,
+  .right-menu,
+  .dashboard {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,128 @@
+.register-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #f4faf5 0%,
+    #ffffff 50%,
+    #e8f5e9 100%
+  );
+}
+
+.register-page main {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 50px 20px 70px;
+}
+
+.register-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.register-card h1 {
+  margin: 0 0 35px;
+  color: #2e7d32;
+  font-size: 38px;
+  text-align: center;
+}
+
+.register-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  color: #222;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background-color: white;
+  color: #222;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.form-group small {
+  margin-top: 7px;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.conditional-field {
+  padding: 18px;
+  border: 1px solid #dcecdc;
+  border-radius: 12px;
+  background-color: #f4faf5;
+}
+
+.register-card button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2e7d32;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.register-card button:hover {
+  background-color: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.register-message {
+  margin-top: 20px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background-color: #edf7ee;
+  color: #2e7d32;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .register-page main {
+    padding: 30px 15px 50px;
+  }
+
+  .register-card {
+    padding: 25px 20px;
+  }
+
+  .register-card h1 {
+    font-size: 32px;
+  }
+}
