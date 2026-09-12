@@ -1,8 +1,12 @@
+```jsx
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const isLoggedIn =
     localStorage.getItem("isLoggedIn") === "true";
 
@@ -15,54 +19,91 @@ function Navbar() {
     localStorage.removeItem("userTelephone");
     localStorage.removeItem("userType");
 
+    setMenuOpen(false);
     navigate("/");
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
     <nav className="navbar">
-      <div className="logo">
-        <Link to="/">
-          Calculateur de carbone
-        </Link>
-      </div>
+      <div className="navbar-container">
 
-      <div className="left-menu">
-        <Link to="/settings">Paramètres</Link>
-        <Link to="/contact">Contact</Link>
-      </div>
+        {/* Logo */}
+        <div className="logo">
+          <Link to="/" onClick={closeMenu}>
+            Calculateur de carbone
+          </Link>
+        </div>
 
-      <div className="dashboard">
-        <Link to="/dashboard">Tableau de bord</Link>
-      </div>
+        {/* Bouton hamburger mobile */}
+        <button
+          type="button"
+          className={`menu-toggle ${menuOpen ? "active" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Ouvrir le menu"
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-      <div className="right-menu">
-        {!isLoggedIn && (
-          <>
-            <Link to="/login">Connexion</Link>
+        {/* Menu */}
+        <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
 
-            <Link to="/register">
-              Créer compte
-            </Link>
-          </>
-        )}
-
-        {isLoggedIn && (
-          <>
-            <Link to="/profile">
-              Mon profil
+          <div className="left-menu">
+            <Link to="/settings" onClick={closeMenu}>
+              Paramètres
             </Link>
 
-            <button
-              type="button"
-              onClick={handleLogout}
-            >
-              Déconnexion
-            </button>
-          </>
-        )}
+            <Link to="/contact" onClick={closeMenu}>
+              Contact
+            </Link>
+          </div>
+
+          <div className="dashboard">
+            <Link to="/dashboard" onClick={closeMenu}>
+              Tableau de bord
+            </Link>
+          </div>
+
+          <div className="right-menu">
+            {!isLoggedIn && (
+              <>
+                <Link to="/login" onClick={closeMenu}>
+                  Connexion
+                </Link>
+
+                <Link to="/register" onClick={closeMenu}>
+                  Créer compte
+                </Link>
+              </>
+            )}
+
+            {isLoggedIn && (
+              <>
+                <Link to="/profile" onClick={closeMenu}>
+                  Mon profil
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                >
+                  Déconnexion
+                </button>
+              </>
+            )}
+          </div>
+
+        </div>
       </div>
     </nav>
   );
 }
 
 export default Navbar;
+```
