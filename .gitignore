@@ -26,4 +26,8 @@ frontend/build/
 
 # Operating system
 .DS_Store
+<<<<<<< HEAD
 Thumbs.db
+=======
+Thumbs.db
+>>>>>>> 18064e1152a20822f1236bf32bbde5ae4fb7318e
